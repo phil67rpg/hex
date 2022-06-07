@@ -1,20 +1,23 @@
 #include <iostream>
+#include <SOIL.h>
 #include <math.h>
 #include <glut.h>
 
 using namespace std;
 
+GLuint texture[8];
+
 const float PI = 3.14159;
 
 void drawHex()
 {
-	const float hexagon_r = 15.0;
+	const float hexagon_r = 10.0;
 	const float hexagon_dx = hexagon_r * cos(30.0*PI / 180.0);
 	const float hexagon_dy = hexagon_r * sin(30.0*PI / 180.0);
 	const float hexagon_gx = 2.0*hexagon_dx;
 	const float hexagon_gy = 2.0*hexagon_dx*sin(60.0*PI / 180.0);
-	float x = 0.0f, y = 0.0f, z = 0.0f;
-	int ni = 5, nj = 5;
+	float x = 1.0f, y = 1.0f, z = 0.0f;
+	int ni = 22, nj = 22;
 			int i, j; float x0;
 			x -= float(ni - 1)*hexagon_gx*0.5; // just shift x,y to start position (i=0,j=0)
 			x -= float(nj - 1)*hexagon_dx*0.5;
@@ -35,11 +38,47 @@ void drawHex()
 			}
 }
 
+void drawTankNorth()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(0.0f, -5.0f);
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(5.0f, 0.0f);
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(0.0f, 5.0f);
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(-5.0f, 0.0f);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
 void renderScene()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	drawHex();
+	drawTankNorth();
 	glFlush();
+}
+
+GLuint loadTex(const char* texname)
+{
+	/* load an image file directly as a new OpenGL texture */
+	GLuint texture = SOIL_load_OGL_texture
+	(
+		texname,
+		SOIL_LOAD_AUTO,
+		SOIL_CREATE_NEW_ID,
+		SOIL_FLAG_INVERT_Y
+	);
+	return texture;
+}
+
+void init()
+{
+	texture[0] = loadTex("C:\\Users\\Owner\\Desktop\\tanknorth.png");
 }
 
 void ChangeSize(GLsizei w, GLsizei h)
@@ -59,6 +98,30 @@ void ChangeSize(GLsizei w, GLsizei h)
 	glLoadIdentity();
 }
 
+void OnMouseClick(int button, int state, int x, int y)
+{
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		cout << x << "  " << y << endl;
+	}
+}
+
+void handleSpecialKeypress(int key, int x, int y)
+{
+	switch (key)
+	{
+	case GLUT_KEY_LEFT:
+		break;
+	case GLUT_KEY_RIGHT:
+		break;
+	case GLUT_KEY_UP:
+		break;
+	case GLUT_KEY_DOWN:
+		break;
+	}
+	glutPostRedisplay();
+}
+
 int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
@@ -68,6 +131,9 @@ int main(int argc, char **argv)
 	glutCreateWindow("Hex");
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(ChangeSize);
+	glutSpecialFunc(handleSpecialKeypress);
+	init();
+	glutMouseFunc(OnMouseClick);
 	glutMainLoop();
 	return 0;
 }
