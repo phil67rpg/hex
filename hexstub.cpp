@@ -1,13 +1,15 @@
 #include <iostream>
 #include <SOIL.h>
 #include <math.h>
-#include <glut.h>
+#include <freeglut.h>
 
 using namespace std;
 
 GLuint texture[8];
 
 const float PI = 3.14159;
+
+float move_x = -3.25f, move_y = 8.35f;
 
 void drawHex()
 {
@@ -43,14 +45,19 @@ void drawTankNorth()
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glBegin(GL_QUADS);
+	
 	glTexCoord2f(0.0f, 0.0f);
-	glVertex2f(0.0f, -5.0f);
+	glVertex2f(0.0f + move_x, -5.0f + move_y);
+	
 	glTexCoord2f(1.0f, 0.0f);
-	glVertex2f(5.0f, 0.0f);
+	glVertex2f(5.0f + move_x, 0.0f + move_y);
+	
 	glTexCoord2f(1.0f, 1.0f);
-	glVertex2f(0.0f, 5.0f);
+	glVertex2f(0.0f + move_x, 5.0f + move_y);
+	
 	glTexCoord2f(0.0f, 1.0f);
-	glVertex2f(-5.0f, 0.0f);
+	glVertex2f(-5.0f + move_x, 0.0f + move_y);
+	
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 }
@@ -100,10 +107,18 @@ void ChangeSize(GLsizei w, GLsizei h)
 
 void OnMouseClick(int button, int state, int x, int y)
 {
+	float mx = x;
+	float my = y;
+	float ox = ((mx / (4.0f))-100.0f);
+	float oy = -((my / (3.0f))-100.0f);
+
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
-		cout << x << "  " << y << endl;
+		cout << ox << "  " << oy << endl;
+		move_x = ox;
+		move_y = oy;
 	}
+	glutPostRedisplay();
 }
 
 void handleSpecialKeypress(int key, int x, int y)
