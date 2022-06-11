@@ -11,6 +11,8 @@ const float PI = 3.14159;
 
 float move_x = 0.0f, move_y = 0.0f;
 bool rot[6] = { 0 };
+int rotate_tank = 6;
+bool drawTank = false;
 
 void drawHex()
 {
@@ -177,11 +179,11 @@ void renderScene()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	drawHex();
-//	drawTankWest();
-	if (rot[0] == 1)
+	if (rot[0] == 1 || drawTank==false)
 	{
 	drawTankWest();
 	rot[0] = 0;
+	drawTank = true;
 	}
 	if (rot[1] == 1)
 	{
@@ -255,14 +257,12 @@ void OnMouseClick(int button, int state, int x, int y)
 
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
-		cout << ox << "  " << oy << endl;
+//		cout << ox << "  " << oy << endl;
 		move_x = ox;
 		move_y = oy;
 	}
 	glutPostRedisplay();
 }
-
-int rotate_tank = 6;
 
 void handleSpecialKeypress(int key, int x, int y)
 {
