@@ -9,7 +9,8 @@ GLuint texture[8];
 
 const float PI = 3.14159;
 
-float move_x = -3.25f, move_y = 8.35f;
+float move_x = 0.0f, move_y = 0.0f;
+bool rot[6] = { 0 };
 
 void drawHex()
 {
@@ -40,7 +41,7 @@ void drawHex()
 			}
 }
 
-void drawTankNorth()
+void drawTankNorthWest()
 {
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -62,11 +63,151 @@ void drawTankNorth()
 	glDisable(GL_TEXTURE_2D);
 }
 
+void drawTankNorthEast()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	glBegin(GL_QUADS);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(0.0f + move_x, -5.0f + move_y);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(-5.0f + move_x, 0.0f + move_y);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(0.0f + move_x, 5.0f + move_y);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(5.0f + move_x, 0.0f + move_y);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawTankSouthEast()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	glBegin(GL_QUADS);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(0.0f + move_x, 5.0f + move_y);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(-5.0f + move_x, 0.0f + move_y);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(0.0f + move_x, -5.0f + move_y);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(5.0f + move_x, 0.0f + move_y);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawTankSouthWest()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	glBegin(GL_QUADS);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(0.0f + move_x, 5.0f + move_y);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(5.0f + move_x, 0.0f + move_y);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(0.0f + move_x, -5.0f + move_y);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(-5.0f + move_x, 0.0f + move_y);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawTankWest()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	glBegin(GL_QUADS);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(5.0f + move_x, -5.0f + move_y);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(5.0f + move_x, 5.0f + move_y);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(-5.0f + move_x, 5.0f + move_y);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(-5.0f + move_x, -5.0f + move_y);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawTankEast()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	glBegin(GL_QUADS);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(-5.0f + move_x, 5.0f + move_y);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(-5.0f + move_x, -5.0f + move_y);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(5.0f + move_x, -5.0f + move_y);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(5.0f + move_x, 5.0f + move_y);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
 void renderScene()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	drawHex();
-	drawTankNorth();
+//	drawTankWest();
+	if (rot[0] == 1)
+	{
+	drawTankWest();
+	rot[0] = 0;
+	}
+	if (rot[1] == 1)
+	{
+	drawTankNorthWest();
+	rot[1] = 0;
+	}
+	if (rot[2] == 1)
+	{
+	drawTankNorthEast();
+	rot[2] = 0;
+	}
+	if (rot[3] == 1)
+	{
+	drawTankEast();
+	rot[3] = 0;
+	}
+	if (rot[4] == 1)
+	{
+	drawTankSouthEast();
+	rot[4] = 0;
+	}
+	if (rot[5] == 1)
+	{
+	drawTankSouthWest();
+	rot[5] = 0;
+	}
 	glFlush();
 }
 
@@ -121,13 +262,28 @@ void OnMouseClick(int button, int state, int x, int y)
 	glutPostRedisplay();
 }
 
+int rotate_tank = 6;
+
 void handleSpecialKeypress(int key, int x, int y)
 {
 	switch (key)
 	{
 	case GLUT_KEY_LEFT:
+		if (rotate_tank <= 0)
+		{
+			rotate_tank = 6;
+		}
+		rotate_tank--;
+//		cout << rotate_tank << endl;
+		rot[rotate_tank] = 1;
 		break;
 	case GLUT_KEY_RIGHT:
+		if (rotate_tank >= 5)
+		{
+			rotate_tank = -1;
+		}
+		rotate_tank++;
+		rot[rotate_tank] = 1;
 		break;
 	case GLUT_KEY_UP:
 		break;
