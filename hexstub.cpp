@@ -257,11 +257,11 @@ void OnMouseClick(int button, int state, int x, int y)
 
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
-//		cout << ox << "  " << oy << endl;
+		rot[0] = 1;
+		cout << ox << "  " << oy << endl;
 		move_x = ox;
 		move_y = oy;
 	}
-	glutPostRedisplay();
 }
 
 void handleSpecialKeypress(int key, int x, int y)
