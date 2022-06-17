@@ -13,14 +13,16 @@ float move_x = 0.0f, move_y = 0.0f;
 bool rot[6] = { 0 };
 int rotate_tank = 6;
 bool drawTank = false;
+float zoom = 9.0f;
 
 void drawHex()
 {
-	const float hexagon_r = 10.0;
-	const float hexagon_dx = hexagon_r * cos(30.0*PI / 180.0);
-	const float hexagon_dy = hexagon_r * sin(30.0*PI / 180.0);
-	const float hexagon_gx = 2.0*hexagon_dx;
-	const float hexagon_gy = 2.0*hexagon_dx*sin(60.0*PI / 180.0);
+	bool drawTank = false;
+	float hexagon_r = zoom;
+	float hexagon_dx = hexagon_r * cos(30.0*PI / 180.0);
+	float hexagon_dy = hexagon_r * sin(30.0*PI / 180.0);
+	float hexagon_gx = 2.0*hexagon_dx;
+	float hexagon_gy = 2.0*hexagon_dx*sin(60.0*PI / 180.0);
 	float x = 1.0f, y = 1.0f, z = 0.0f;
 	int ni = 22, nj = 22;
 			int i, j; float x0;
@@ -136,7 +138,7 @@ void drawTankWest()
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glBegin(GL_QUADS);
-
+	
 	glTexCoord2f(0.0f, 0.0f);
 	glVertex2f(5.0f + move_x, -5.0f + move_y);
 
@@ -241,9 +243,9 @@ void ChangeSize(GLsizei w, GLsizei h)
 	glLoadIdentity();
 	aspectRatio = (GLfloat)w / (GLfloat)h;
 	if (w <= h)
-		glOrtho(-100.0, 100.0, -100.0 / aspectRatio, 100.0 / aspectRatio, 1.0, -1.0);
+		glOrtho(-100.0, 100.0, -100.0, 100.0, 1.0, -1.0);
 	else
-		glOrtho(-100.0*aspectRatio, 100.0*aspectRatio, -100.0, 100.0, 1.0, -1.0);
+	glOrtho(-100.0, 100.0, -100.0, 100.0, 1.0, -1.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
@@ -258,10 +260,16 @@ void OnMouseClick(int button, int state, int x, int y)
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
 		rot[0] = 1;
-		cout << ox << "  " << oy << endl;
+//		cout << ox << "  " << oy << endl;
 		move_x = ox;
 		move_y = oy;
 	}
+}
+
+void mouseWheel(int wheel, int direction, int x, int y)
+{
+	(direction > 0) ? zoom += 0.5f : zoom -= 0.5f;
+	glutPostRedisplay();
 }
 
 void handleSpecialKeypress(int key, int x, int y)
@@ -300,11 +308,12 @@ int main(int argc, char **argv)
 	glutInitWindowPosition(400, 300);
 	glutInitWindowSize(800, 600);
 	glutCreateWindow("Hex");
+	glutMouseWheelFunc(mouseWheel);
+	glutMouseFunc(OnMouseClick);
 	glutDisplayFunc(renderScene);
-	glutReshapeFunc(ChangeSize);
 	glutSpecialFunc(handleSpecialKeypress);
 	init();
-	glutMouseFunc(OnMouseClick);
+	glutReshapeFunc(ChangeSize);
 	glutMainLoop();
 	return 0;
 }
