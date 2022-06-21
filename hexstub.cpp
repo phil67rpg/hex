@@ -9,10 +9,12 @@ GLuint texture[8];
 
 const float PI = 3.14159;
 
-float move_x = 0.0f, move_y = 0.0f;
+float move_x = -3.0f, move_y = 8.0f;
 bool rot[6] = { 0 };
-int rotate_tank = 6;
+int rotate_tank = 0;
 bool drawTank = false;
+bool drawTank_one = false;
+
 float zoom = 9.0f;
 
 void drawHex()
@@ -181,6 +183,12 @@ void renderScene()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	drawHex();
+	if (rot[3] == 1 || drawTank_one == false)
+	{
+		drawTankEast();
+		rot[3] = 0;
+		drawTank_one = true;
+	}
 	if (rot[0] == 1 || drawTank==false)
 	{
 	drawTankWest();
@@ -196,11 +204,6 @@ void renderScene()
 	{
 	drawTankNorthEast();
 	rot[2] = 0;
-	}
-	if (rot[3] == 1)
-	{
-	drawTankEast();
-	rot[3] = 0;
 	}
 	if (rot[4] == 1)
 	{
@@ -260,9 +263,9 @@ void OnMouseClick(int button, int state, int x, int y)
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
 		rot[0] = 1;
-//		cout << ox << "  " << oy << endl;
-		move_x = ox;
-		move_y = oy;
+		cout << ox << "  " << oy << endl;
+//		move_x = ox;
+//		move_y = oy;
 	}
 }
 
@@ -282,20 +285,43 @@ void handleSpecialKeypress(int key, int x, int y)
 			rotate_tank = 6;
 		}
 		rotate_tank--;
-//		cout << rotate_tank << endl;
+		cout << rotate_tank << endl;
 		rot[rotate_tank] = 1;
 		break;
 	case GLUT_KEY_RIGHT:
 		if (rotate_tank >= 5)
 		{
-			rotate_tank = -1;
+			rotate_tank = 0;
 		}
 		rotate_tank++;
+		cout << rotate_tank << endl;
 		rot[rotate_tank] = 1;
 		break;
 	case GLUT_KEY_UP:
+		cout << rotate_tank << endl;
+		if(rotate_tank==3)
+		{
+		drawTank_one = false;
+		move_x += 15.0f;
+		}
+		if (rotate_tank == 0)
+		{
+		drawTank = false;
+		move_x -= 15.0f;
+		}
 		break;
 	case GLUT_KEY_DOWN:
+		cout << rotate_tank << endl;
+		if (rotate_tank == 3)
+		{
+			drawTank_one = false;
+			move_x -= 15.0f;
+		}
+		if (rotate_tank == 0)
+		{
+			drawTank = false;
+			move_x += 15.0f;
+		}
 		break;
 	}
 	glutPostRedisplay();
