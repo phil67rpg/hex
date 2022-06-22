@@ -14,6 +14,10 @@ bool rot[6] = { 0 };
 int rotate_tank = 0;
 bool drawTank = false;
 bool drawTank_one = false;
+bool drawTank_two = false;
+bool drawTank_three = false;
+bool drawTank_four = false;
+bool drawTank_five = false;
 
 float zoom = 9.0f;
 
@@ -189,31 +193,35 @@ void renderScene()
 		rot[3] = 0;
 		drawTank_one = true;
 	}
+	if (rot[2] == 1 || drawTank_two == false)
+	{
+		drawTankNorthEast();
+		rot[2] = 0;
+		drawTank_two = true;
+	}
+	if (rot[1] == 1 || drawTank_three == false)
+	{
+		drawTankNorthWest();
+		rot[1] = 0;
+		drawTank_three = true;
+	}
+	if (rot[4] == 1 || drawTank_four == false)
+	{
+		drawTankSouthEast();
+		rot[4] = 0;
+		drawTank_four = true;
+	}
+	if (rot[5] == 1 || drawTank_five == false)
+	{
+		drawTankSouthWest();
+		rot[5] = 0;
+		drawTank_five = true;
+	}
 	if (rot[0] == 1 || drawTank==false)
 	{
 	drawTankWest();
 	rot[0] = 0;
 	drawTank = true;
-	}
-	if (rot[1] == 1)
-	{
-	drawTankNorthWest();
-	rot[1] = 0;
-	}
-	if (rot[2] == 1)
-	{
-	drawTankNorthEast();
-	rot[2] = 0;
-	}
-	if (rot[4] == 1)
-	{
-	drawTankSouthEast();
-	rot[4] = 0;
-	}
-	if (rot[5] == 1)
-	{
-	drawTankSouthWest();
-	rot[5] = 0;
 	}
 	glFlush();
 }
@@ -309,6 +317,30 @@ void handleSpecialKeypress(int key, int x, int y)
 		drawTank = false;
 		move_x -= 15.0f;
 		}
+		if (rotate_tank == 2)
+		{
+			drawTank_two = false;
+			move_x += 8.0f;
+			move_y += 13.5f;
+		}
+		if (rotate_tank == 1)
+		{
+			drawTank_three = false;
+			move_x -= 8.0f;
+			move_y += 13.5f;
+		}
+		if (rotate_tank == 4)
+		{
+			drawTank_four = false;
+			move_x += 8.0f;
+			move_y -= 13.5f;
+		}
+		if (rotate_tank == 5)
+		{
+			drawTank_five = false;
+			move_x -= 8.0f;
+			move_y -= 13.5f;
+		}
 		break;
 	case GLUT_KEY_DOWN:
 		cout << rotate_tank << endl;
@@ -321,6 +353,30 @@ void handleSpecialKeypress(int key, int x, int y)
 		{
 			drawTank = false;
 			move_x += 15.0f;
+		}
+		if (rotate_tank == 2)
+		{
+			drawTank_two = false;
+			move_x -= 8.0f;
+			move_y -= 13.5f;
+		}
+		if (rotate_tank == 1)
+		{
+			drawTank_three = false;
+			move_x += 8.0f;
+			move_y -= 13.5f;
+		}
+		if (rotate_tank == 4)
+		{
+			drawTank_four = false;
+			move_x -= 8.0f;
+			move_y += 13.5f;
+		}
+		if (rotate_tank == 5)
+		{
+			drawTank_five = false;
+			move_x += 8.0f;
+			move_y += 13.5f;
 		}
 		break;
 	}
