@@ -51,6 +51,28 @@ void drawHex()
 			}
 }
 
+void drawHexWater()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[1]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(4.5f, 1.5f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(4.5f, 14.5f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(-10.5f, 14.5f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(-10.5f, 1.5f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
 void drawTankNorthWest()
 {
 	glEnable(GL_TEXTURE_2D);
@@ -187,6 +209,7 @@ void renderScene()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	drawHex();
+	drawHexWater();
 	if (rot[3] == 1 || drawTank_one == false)
 	{
 		drawTankEast();
@@ -242,6 +265,7 @@ GLuint loadTex(const char* texname)
 void init()
 {
 	texture[0] = loadTex("C:\\Users\\Owner\\Desktop\\tanknorth.png");
+	texture[1] = loadTex("C:\\Users\\Owner\\Desktop\\tileWater.png");
 }
 
 void ChangeSize(GLsizei w, GLsizei h)
@@ -268,12 +292,9 @@ void OnMouseClick(int button, int state, int x, int y)
 	float ox = ((mx / (4.0f))-100.0f);
 	float oy = -((my / (3.0f))-100.0f);
 
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
 	{
-		rot[0] = 1;
 		cout << ox << "  " << oy << endl;
-//		move_x = ox;
-//		move_y = oy;
 	}
 }
 
@@ -293,7 +314,6 @@ void handleSpecialKeypress(int key, int x, int y)
 			rotate_tank = 6;
 		}
 		rotate_tank--;
-		cout << rotate_tank << endl;
 		rot[rotate_tank] = 1;
 		break;
 	case GLUT_KEY_RIGHT:
@@ -302,11 +322,9 @@ void handleSpecialKeypress(int key, int x, int y)
 			rotate_tank = 0;
 		}
 		rotate_tank++;
-		cout << rotate_tank << endl;
 		rot[rotate_tank] = 1;
 		break;
 	case GLUT_KEY_UP:
-		cout << rotate_tank << endl;
 		if(rotate_tank==3)
 		{
 		drawTank_one = false;
@@ -343,7 +361,6 @@ void handleSpecialKeypress(int key, int x, int y)
 		}
 		break;
 	case GLUT_KEY_DOWN:
-		cout << rotate_tank << endl;
 		if (rotate_tank == 3)
 		{
 			drawTank_one = false;
