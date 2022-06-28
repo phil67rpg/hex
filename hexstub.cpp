@@ -51,6 +51,270 @@ void drawHex()
 			}
 }
 
+void drawHexGrass()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(4.5f, 1.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(4.5f, 14.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(-10.5f, 14.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(-10.5f, 1.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_two()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(12.5f, -13.5f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(12.5f, 1.5f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(-2.5f, 1.5f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(-2.5f, -13.5f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_three()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(27.5f, -13.5f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(27.5f, 1.5f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(12.5f, 1.5f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(12.5f, -13.5f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexDirt()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[3]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(-10.5f, 1.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(-10.5f, 15.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(-25.5f, 15.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(-25.5f, 1.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_four()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(35.5f, 1.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(35.5f, 14.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(20.5f, 14.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(20.5f, 1.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_five()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(43.5f, 13.5f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(43.5f, 28.5f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(28.5f, 28.5f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(28.5f, 13.5f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_six()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(51.5f, 27.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(51.5f, 42.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(36.5f, 42.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(36.5f, 27.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_seven()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(66.5f, 27.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(66.5f, 42.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(51.5f, 42.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(51.5f, 27.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_eight()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(75.0f, 13.5f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(75.0f, 28.5f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(60.0f, 28.5f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(60.0f, 13.5f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_nine()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(67.0f, -0.5f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(67.0f, 14.5f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(52.0f, 14.5f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(52.0f, -0.5f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_ten()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(59.0f, -13.5f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(59.0f, 1.5f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(44.0f, 1.5f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(44.0f, -13.5f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_eleven()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(51.5f, -27.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(51.5f, -12.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(36.5f, -12.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(36.5f, -27.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
 void drawHexWater()
 {
 	glEnable(GL_TEXTURE_2D);
@@ -58,16 +322,16 @@ void drawHexWater()
 	glBegin(GL_POLYGON);
 
 	glTexCoord2f(0.0f, 0.0f);
-	glVertex2f(4.5f, 1.5f);
+	glVertex2f(19.5f, 1.0f);
 
 	glTexCoord2f(1.0f, 0.0f);
-	glVertex2f(4.5f, 14.5f);
+	glVertex2f(19.5f, 14.0f);
 
 	glTexCoord2f(1.0f, 1.0f);
-	glVertex2f(-10.5f, 14.5f);
+	glVertex2f(5.5f, 14.0f);
 
 	glTexCoord2f(0.0f, 1.0f);
-	glVertex2f(-10.5f, 1.5f);
+	glVertex2f(5.5f, 1.0f);
 
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
@@ -209,7 +473,19 @@ void renderScene()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	drawHex();
+	drawHexGrass();
+	drawHexGrass_two();
+	drawHexGrass_three();
+	drawHexGrass_four();
+	drawHexGrass_five();
+	drawHexGrass_six();
+	drawHexGrass_seven();
+	drawHexGrass_eight();
+	drawHexGrass_nine();
+	drawHexGrass_ten();
+	drawHexGrass_eleven();
 	drawHexWater();
+	drawHexDirt();
 	if (rot[3] == 1 || drawTank_one == false)
 	{
 		drawTankEast();
@@ -266,6 +542,8 @@ void init()
 {
 	texture[0] = loadTex("C:\\Users\\Owner\\Desktop\\tanknorth.png");
 	texture[1] = loadTex("C:\\Users\\Owner\\Desktop\\tileWater.png");
+	texture[2] = loadTex("C:\\Users\\Owner\\Desktop\\tileGrass.png");
+	texture[3] = loadTex("C:\\Users\\Owner\\Desktop\\tileDirt.png");
 }
 
 void ChangeSize(GLsizei w, GLsizei h)
