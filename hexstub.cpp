@@ -9,7 +9,7 @@ GLuint texture[8];
 
 const float PI = 3.14159;
 
-float move_x = -3.0f, move_y = 8.0f;
+float move_x = 98.5f, move_y = -32.5f;
 bool rot[6] = { 0 };
 int rotate_tank = 0;
 bool drawTank = false;
@@ -18,7 +18,11 @@ bool drawTank_two = false;
 bool drawTank_three = false;
 bool drawTank_four = false;
 bool drawTank_five = false;
-
+int HexGrid[13][10] = { {0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},{2,2,2,2,2,0,1,1,2,2},{0,0,2,2,0,1,0,1,0,0},
+						{0,0,0,3,0,1,0,0,0,0},{0,0,2,0,1,0,1,0,0,0},{2,2,2,1,2,0,0,1,0,2},{0,0,1,2,2,0,0,0,1,0},
+						{2,2,0,1,2,0,0,0,0,0},{1,1,0,2,1,0,0,2,0,0},{0,0,1,2,2,1,2,0,0,2},{0,0,0,1,0,0,1,0,0,0},{0,0,0,0,1,1,0,0,0,0} };
+int Xloc = 9, Yloc = 7;
+int HexType = HexGrid[Yloc][Xloc];
 float zoom = 9.0f;
 
 void drawHex()
@@ -315,6 +319,182 @@ void drawHexGrass_eleven()
 	glDisable(GL_TEXTURE_2D);
 }
 
+void drawHexGrass_twelve()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(43.5f, -40.5f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(43.5f, -25.5f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(28.5f, -25.5f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(28.5f, -40.5f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_thirteen()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(51.5f, -54.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(51.5f, -39.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(36.5f, -39.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(36.5f, -54.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_fourteen()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(59.0f, -67.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(59.0f, -52.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(44.0f, -52.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(44.0f, -67.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_fiveteen()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(67.0f, -81.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(67.0f, -66.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(52.0f, -66.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(52.0f, -81.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_sixteen()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(74.5f, -68.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(74.5f, -53.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(59.5f, -53.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(59.5f, -68.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_seventeen()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(82.5f, -54.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(82.5f, -39.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(67.5f, -39.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(67.5f, -54.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_eightteen()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(90.0f, -40.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(90.0f, -25.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(75.0f, -25.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(75.0f, -40.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawHexGrass_nineteen()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBegin(GL_POLYGON);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(106.0f, -41.0f);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f(106.0f, -26.0f);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(91.0f, -26.0f);
+
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f(91.0f, -41.0f);
+
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+
 void drawHexWater()
 {
 	glEnable(GL_TEXTURE_2D);
@@ -484,6 +664,14 @@ void renderScene()
 	drawHexGrass_nine();
 	drawHexGrass_ten();
 	drawHexGrass_eleven();
+	drawHexGrass_twelve();
+	drawHexGrass_thirteen();
+	drawHexGrass_fourteen();
+	drawHexGrass_fiveteen();
+	drawHexGrass_sixteen();
+	drawHexGrass_seventeen();
+	drawHexGrass_eightteen();
+	drawHexGrass_nineteen();
 	drawHexWater();
 	drawHexDirt();
 	if (rot[3] == 1 || drawTank_one == false)
@@ -606,36 +794,90 @@ void handleSpecialKeypress(int key, int x, int y)
 		if(rotate_tank==3)
 		{
 		drawTank_one = false;
+		int TestXloc = Xloc + 1;
+		HexType = HexGrid[Yloc][TestXloc];
+		cout << Yloc << " " << TestXloc << " " << HexType << endl;
+		if (HexType == 1)
+		{
+		Xloc = TestXloc;
 		move_x += 15.0f;
+		}
 		}
 		if (rotate_tank == 0)
 		{
 		drawTank = false;
+		int TestXloc = Xloc - 1;
+		HexType = HexGrid[Yloc][TestXloc];
+		cout << Yloc << " " << TestXloc << " " << HexType << endl;
+		if (HexType == 1)
+		{
+		Xloc = TestXloc;
 		move_x -= 15.0f;
+		} 
 		}
+
 		if (rotate_tank == 2)
 		{
-			drawTank_two = false;
-			move_x += 8.0f;
-			move_y += 13.5f;
+		drawTank_two = false;
+		int TestXloc = Xloc + 1;
+		int TestYloc = Yloc + 1;
+		HexType = HexGrid[TestYloc][TestXloc];
+		cout << TestYloc << " " << TestXloc << " " << HexType << endl;
+		if (HexType == 1)
+		{
+		Xloc = TestXloc;
+		Yloc = TestYloc;
+		move_x += 8.0f;
+		move_y += 13.5f;
 		}
+		}
+
 		if (rotate_tank == 1)
 		{
-			drawTank_three = false;
-			move_x -= 8.0f;
-			move_y += 13.5f;
+		drawTank_three = false;
+		int TestXloc = Xloc - 1;
+		int TestYloc = Yloc + 1;
+		HexType = HexGrid[TestYloc][TestXloc];
+		cout << TestYloc << " " << TestXloc << " " << HexType << endl;
+		if (HexType == 1)
+		{
+		Xloc = TestXloc;
+		Yloc = TestYloc;
+		move_x -= 8.0f;
+		move_y += 13.5f;
 		}
+		}
+
 		if (rotate_tank == 4)
 		{
-			drawTank_four = false;
-			move_x += 8.0f;
-			move_y -= 13.5f;
+		drawTank_four = false;
+		int TestXloc = Xloc + 1;
+		int TestYloc = Yloc - 1;
+		HexType = HexGrid[TestYloc][TestXloc];
+		cout << TestYloc << " " << TestXloc << " " << HexType << endl;
+		if (HexType == 1)
+		{
+		Xloc = TestXloc;
+		Yloc = TestYloc;
+		move_x += 8.0f;
+		move_y -= 13.5f;
 		}
+		}
+
 		if (rotate_tank == 5)
 		{
-			drawTank_five = false;
-			move_x -= 8.0f;
-			move_y -= 13.5f;
+		drawTank_five = false;
+		int TestXloc = Xloc - 1;
+		int TestYloc = Yloc - 1;
+		HexType = HexGrid[TestYloc][TestXloc];
+		cout << TestYloc << " " << TestXloc << " " << HexType << endl;
+		if (HexType == 1)
+		{
+		Xloc = TestXloc;
+		Yloc = TestYloc;
+		move_x -= 8.0f;
+		move_y -= 13.5f;
+		}
 		}
 		break;
 	case GLUT_KEY_DOWN:
